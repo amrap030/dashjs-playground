@@ -1,12 +1,46 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+    <video id="myMainVideoPlayer" controls></video>
   </div>
 </template>
+
+<script>
+import { MediaPlayer } from "dashjs";
+
+export default {
+  data() {
+    return {
+      url: "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+    };
+  },
+  methods: {
+    calculateNumber() {
+      let num = 0;
+      for (let i = 0; i < 10000000000; i++) {
+        num = num + i;
+      }
+      for (let i = 0; i < 10000000000; i++) {
+        num = num + i;
+      }
+      for (let i = 0; i < 10000000000; i++) {
+        num = num + i;
+      }
+      for (let i = 0; i < 10000000000; i++) {
+        num = num + i;
+      }
+    },
+  },
+  mounted() {
+    const player = MediaPlayer().create();
+    player.initialize(
+      document.querySelector("#myMainVideoPlayer"),
+      this.url,
+      true
+    );
+    setTimeout(this.calculateNumber, 10000);
+  },
+};
+</script>
 
 <style>
 #app {
